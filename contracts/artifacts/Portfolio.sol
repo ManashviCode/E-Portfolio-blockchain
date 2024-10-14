@@ -1,4 +1,15 @@
 // SPDX-License-Identifier: GPL-3.0
+
+//https://github.com/ManashviCode/E-Portfolio-blockchain
+//https://github.com/kshitijofficial/Decentralize-Portfolio/blob/main/Portfolio.sol
+
+
+//Dates- 10/01/2016-29/12/2017, 20/01/2018-25/12/2019, 17/04/2021-30/09/2024  
+//degree- intemediate level, high school, University
+//knowledge- Information technology, physical stream, Computer Engineering
+//Institue - NGC , RBV, UOJ
+
+
 pragma solidity >=0.7.0 <0.9.0;
 
 contract Portfolio{
