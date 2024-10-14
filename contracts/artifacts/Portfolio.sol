@@ -25,7 +25,7 @@ contract Portfolio{
 
   string public imageLink="QmNVn57VNAzG1GURePB8TFJCb6p2L5Jzs69musbpU3tNXU";
   string public description="over 1 months of practical experience with a good knowledge in blockchain";
-  string public resumeLinks="Qme7xVCaRnwUcBVHyaKhsGsG4QFog2SDMN3fHLWCTvwAKz";
+  string public resumeLink="Qme7xVCaRnwUcBVHyaKhsGsG4QFog2SDMN3fHLWCTvwAKz";
   uint projectCount;//initially it will zero
   uint educationCount;
 
@@ -56,32 +56,36 @@ contract Portfolio{
       return projects;
   }
 
-  function insertEducation(string calldata _data, string calldata _degree, string calldata _knowledgeAcquired, string calldata _instutionName) external onlyAuthority{
-
+  function insertEducation(string calldata _date, string calldata _degree, string calldata _knowledgeAcquired, string calldata _instutionName) external onlyAuthority{
+    require(educationCount<3,"Only 3 education details allowed");
+     educationDetails[educationCount]=Education(educationCount,_date,_degree,_knowledgeAcquired,_instutionName);
+     educationCount++;
   }
 
   function changeEducation (string calldata _date,string calldata _degree,string calldata _knowledgeAcquired,string calldata _instutionName,uint _educationDetailCount) external onlyAuthority{
+   require(_educationDetailCount>=0 && _educationDetailCount<3,"Invalid educationCount");
+      educationDetails[_educationDetailCount]=Education(_educationDetailCount,_date,_degree,_knowledgeAcquired,_instutionName);
   
   }
 
   function allEducationDetails() external view returns(Education[3] memory){
-
+ return educationDetails;
   }
 
   function changeDescription(string calldata _description) external onlyAuthority{
-
+description=_description;
   }
 
   function changeResumeLink(string calldata _resumeLink) external onlyAuthority{
-
+ resumeLink=_resumeLink;
   }
 
   function changeImageLink(string calldata _imageLink) external onlyAuthority{
-
+  imageLink=_imageLink;
   }
 
   function donate() public payable {
-
+payable(portfolioAuthority).transfer(msg.value);
   }
 
 }
